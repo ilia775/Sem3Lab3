@@ -192,7 +192,7 @@ public:
         Node<T>* temp = other.head;
         for (int i = 0; i < other.size; i++)
         {
-            this->Push_Back(temp->data);
+            this->Push_Back(temp->index);
             temp = temp->ptrNext;
         }
     }
@@ -332,7 +332,7 @@ public:
             }
             for (int i = startIndex; i <= endIndex; i++)
             {
-                arrnew[i - startIndex] = temp->data;
+                arrnew[i - startIndex] = temp->index;
                 temp = temp->ptrNext;
             }
             LinkedList<T>* res = new LinkedList<T>(arrnew, endIndex - startIndex + 1);
@@ -373,12 +373,12 @@ public:
         size -= 1;
     }
 
-    void Push_Back(T data)
+    void Push_Back(T index)
     {
         size += 1;
         if (head == nullptr)
         {
-            head = new Node<T>(data);
+            head = new Node<T>(index);
         }
         else
         {
@@ -387,7 +387,7 @@ public:
             {
                 current = current->ptrNext;
             }
-            current->ptrNext = new Node<T>(data);
+            current->ptrNext = new Node<T>(index);
         }
     }
 
@@ -403,7 +403,7 @@ public:
         {
             current = current->ptrNext;
         }
-        return current->data;
+        return current->index;
     }
 
     LinkedList<T>& operator=(const LinkedList<T>& other)
@@ -412,15 +412,15 @@ public:
         Node<T>* temp = other.head;
         for (int i = 0; i < other.size; i++)
         {
-            Push_Back(temp->data);
+            Push_Back(temp->index);
             temp = temp->ptrNext;
         }
         return *this;
     }
 
-    void Push_Front(T data)
+    void Push_Front(T index)
     {
-        head = new Node<T>(data, head);
+        head = new Node<T>(index, head);
         size += 1;
     }
 
@@ -430,7 +430,7 @@ public:
         Node<T>* temp = this->head;
         for (int i = 0; i < size; i++)
         {
-            Arr[i] = temp->data;
+            Arr[i] = temp->index;
             temp = temp->ptrNext;
         }
         return Arr;
@@ -502,16 +502,16 @@ private:
     {
     public:
         Node<T1>* ptrNext;
-        T1 data;
+        T1 index;
 
-        Node(T1 data = T1(), Node<T1>* ptrNext = nullptr)
+        Node(T1 index = T1(), Node<T1>* ptrNext = nullptr)
         {
-            this->data = data;
+            this->index = index;
             this->ptrNext = ptrNext;
         }
         Node<T1>& operator=(const Node<T1> other)
         {
-            this->data = other.data;
+            this->index = other.index;
         }
         /*Node<T1>& operator[](const int index)
         {

@@ -39,18 +39,14 @@ void GraphInterface()
 	Graph<D, P>* graph = new Graph<D, P>();
 	int numofpoints = rand(10, 21);
 	int MAXP = 10, MINP = -10;
-	ArraySortedSequence<Point<D>> Psec = ArraySortedSequence<Point<D>>(numofpoints);
-	for (int i = 0; i < numofpoints; i++)
-	{
-		Psec[i] = Point<D>(rand(MINP, MAXP));
-	}
 	int numofcon = rand(30, 100);
 	for (int i = 0; i < numofcon; i++)
 	{
-		graph->Add(Connection<D, P>(&Psec[rand(0, Psec.GetLenght() - 1)], &Psec[rand(0, Psec.GetLenght() - 1)], rand(1, 100)));
+		graph->Add(Connection<D, P>(new Point<D>(rand(MINP, MAXP)), new Point<D>(rand(MINP, MAXP)), rand(1, 100)));
 	}
 	graph->PrintConnections();
 	graph->PrintPoints();
+	if (!graph->Get_point_list().contains(2) || !graph->Get_point_list().contains(3)) graph->Add(Connection<D, P>(new Point<D>(2), new Point<D>(3), rand(1, 100)));
 	try
 	{
 		cout << graph->FindWay(2, 3) << endl;
